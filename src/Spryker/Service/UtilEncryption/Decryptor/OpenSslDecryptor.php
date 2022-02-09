@@ -34,7 +34,6 @@ class OpenSslDecryptor implements OpenSslDecryptorInterface
      */
     public function decryptOpenSsl(string $cipherText, string $initVector, string $encryptionKey, ?string $encryptionMethod = null): string
     {
-        /** @phpstan-var string */
         return openssl_decrypt(
             base64_decode($cipherText),
             $encryptionMethod ?? $this->utilEncryptionConfig->getDefaultOpenSslEncryptionMethod(),

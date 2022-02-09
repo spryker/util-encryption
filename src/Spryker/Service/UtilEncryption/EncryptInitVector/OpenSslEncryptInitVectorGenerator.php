@@ -39,10 +39,9 @@ class OpenSslEncryptInitVectorGenerator implements OpenSslEncryptInitVectorGener
      */
     public function generateOpenSslEncryptInitVector(?string $encryptionMethod = null): string
     {
-        /** @var int $length */
-        $length = openssl_cipher_iv_length($encryptionMethod ?? $this->utilEncryptionConfig->getDefaultOpenSslEncryptionMethod());
-
-        return $this->utilTextService->generateRandomString($length);
+        return $this->utilTextService->generateRandomString(
+            openssl_cipher_iv_length($encryptionMethod ?? $this->utilEncryptionConfig->getDefaultOpenSslEncryptionMethod()),
+        );
     }
 
     /**
@@ -52,9 +51,8 @@ class OpenSslEncryptInitVectorGenerator implements OpenSslEncryptInitVectorGener
      */
     public function generateByteStringOpenSslEncryptInitVector(?string $encryptionMethod = null): string
     {
-        /** @var int $length */
-        $length = openssl_cipher_iv_length($encryptionMethod ?? $this->utilEncryptionConfig->getDefaultOpenSslEncryptionMethod());
-
-        return $this->utilTextService->generateRandomByteString($length);
+        return $this->utilTextService->generateRandomByteString(
+            openssl_cipher_iv_length($encryptionMethod ?? $this->utilEncryptionConfig->getDefaultOpenSslEncryptionMethod()),
+        );
     }
 }
